@@ -1,5 +1,14 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 const Main = () => {
-  return <div>메인 페이지 입니다.</div>;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/login");
+  }, []);
+
+  return <div>메인 </div>;
 };
 
 export default Main;
