@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import sytled from "./index.module.css";
+import styled from "./index.module.css";
 import useStore from "../../stores/users";
 import { useNavigate } from "react-router-dom";
+import LoginForm from "../../components/loginForm";
 
 const LoginPage = () => {
   const [name, setName] = useState("");
@@ -27,29 +28,28 @@ const LoginPage = () => {
   };
 
   // name 업데이트
-  const handleChanegName = (event: any) => {
+  const handleChangeName = (event: any) => {
     setName(event.target.value);
   };
 
-  return (
-    <div className={sytled.root}>
+  const Header = () => {
+    return (
       <header>
-        <div className={sytled.headerBox}>
+        <div className={styled.headerBox}>
           <h3>LOG IN</h3>
         </div>
       </header>
-      <div className={sytled.formArea}>
-        <input
-          type="text"
-          className={sytled.inputName}
-          placeholder=" 이름을 입력하세요"
-          onChange={handleChanegName}
-        />
+    );
+  };
 
-        <div className={sytled.loginBtn} onClick={handleLogin}>
-          접속하기
-        </div>
-      </div>
+  return (
+    <div className={styled.root}>
+      <Header />
+      <LoginForm
+        name={name}
+        handleChangeName={handleChangeName}
+        handleLogin={handleLogin}
+      />
     </div>
   );
 };

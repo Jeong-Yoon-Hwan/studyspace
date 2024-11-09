@@ -1,0 +1,28 @@
+.root {
+  width: 100%;
+  height: 10%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputMessage {
+  width: 100%;
+  height: 90%;
+  border: none;
+  padding: 10px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.sendBtn {
+  width: 120px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: tomato;
+}

@@ -6,10 +6,6 @@ import useStore from "../../stores/users";
 const Header = () => {
   const [color, setColor] = useState("#605678");
 
-  // const { user, removeUser }: any = useStore((state: any) => ({
-  //   user: state.user,
-  //   removeUser: state.removeUser,
-  // }));
   const user = useStore((state: any) => state.user);
   const removeUser = useStore((state: any) => state.removeUser);
 
