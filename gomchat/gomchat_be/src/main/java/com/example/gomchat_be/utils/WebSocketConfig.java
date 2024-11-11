@@ -1,0 +1,25 @@
+package com.example.gomchat_be.utils;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+
+import com.example.gomchat_be.utils.handler.ChatHandler;
+
+import lombok.RequiredArgsConstructor;
+
+@Configuration
+@EnableWebSocket
+@RequiredArgsConstructor
+public class WebSocketConfig implements WebSocketConfigurer {
+  private final ChatHandler chatHandler;
+
+  @Override
+  public void registerWebSocketHandlers(WebSocketHandlerRegistry registry){
+    registry.addHandler(chatHandler, "/ws/chat").setAllowedOrigins("*");// 사용하고 있는 도메인 명시
+  }
+  
+}

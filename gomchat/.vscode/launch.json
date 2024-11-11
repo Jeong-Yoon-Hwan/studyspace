@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-GomchatBeApplication<gomchat_be>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.example.gomchat_be.GomchatBeApplication",
+      "projectName": "gomchat_be",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
