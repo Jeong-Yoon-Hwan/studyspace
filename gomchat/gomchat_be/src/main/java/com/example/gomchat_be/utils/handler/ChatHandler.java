@@ -18,13 +18,14 @@ public class ChatHandler extends TextWebSocketHandler {
   @Override
   public void afterConnectionEstablished(WebSocketSession session) throws Exception {
     sessions.add(session);
-    System.out.println("연결되었습니다.");
+    System.out.println("연결되었습니다." + session);
   }
 
   // 클라이언트 연결 해제 후 실행
   @Override
   public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     sessions.remove(session);
+     System.out.println("해제되었습니다." + session);
   }
 
   // 서버에 메시지가 수신되었을 경우

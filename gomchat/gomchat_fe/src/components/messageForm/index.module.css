@@ -1,7 +1,6 @@
 .root {
   width: 100%;
   height: 10%;
-  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,9 +8,10 @@
 
 .inputMessage {
   width: 100%;
-  height: 90%;
+  height: 100%;
   border: none;
   padding: 10px;
+  background-color: rgb(243, 242, 242);
 }
 
 input:focus {
@@ -24,5 +24,8 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: tomato;
+  background-color: #536493;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
 }

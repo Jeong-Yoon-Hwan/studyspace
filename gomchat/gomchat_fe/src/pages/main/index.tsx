@@ -1,21 +1,24 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import useStore from "../../stores/users";
 import MessageForm from "../../components/messageForm";
 import styled from "./index.module.css";
-
-const ChatArea = () => {
-  return (
-    <>
-      <div className={styled.chatArea}>채팅 박스</div>
-    </>
-  );
-};
+import ChatArea from "../../components/chatArea";
+import { useEffect, useState } from "react";
+import useStore from "../../stores/users";
+import useWebSocketStore from "../../stores/websocket";
 
 const Main = () => {
-  const navigate = useNavigate();
+  const { ws, connectWebSocket, closeWebSocket } = useWebSocketStore();
+  const [message, setMessage] = useState("");
+  const user = useStore((state: any) => state.user);
 
-  const user = useStore((state) => state);
+  useEffect(() => {
+    if (user !== null) {
+      connectWebSocket("ws://localhost:8088/ws/chat");
+    }
+
+    return () => {
+      closeWebSocket();
+    };
+  }, [connectWebSocket, closeWebSocket]);
 
   return (
     <div className={styled.root}>
