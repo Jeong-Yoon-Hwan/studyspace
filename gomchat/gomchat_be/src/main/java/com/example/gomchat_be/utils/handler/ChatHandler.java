@@ -10,9 +10,12 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.google.gson.Gson;
+
 @Component
 public class ChatHandler extends TextWebSocketHandler {
   private Set<WebSocketSession> sessions = new HashSet<>();
+  Gson gson = new Gson();
   
   // 클라이언트 연결 성공 후 실행
   @Override
@@ -32,8 +35,22 @@ public class ChatHandler extends TextWebSocketHandler {
   @Override
   protected void handleTextMessage(WebSocketSession session, TextMessage message){
     try {
-      session.sendMessage(new TextMessage(message.getPayload()));
-    } catch (IOException e) {
+      System.out.println("받은 메시지: " + gson.fromJson(message.getPayload(), MessageVO.class));
+      MessageVO parseMesssage = gson.fromJson(message.getPayload(), MessageVO.class);
+      // session.sendMessage(new TextMessage(gson.toJson(parseMesssage)));
+      broadcast(parseMesssage);
+
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+  }
+
+  public void broadcast(MessageVO message){
+    try {
+      for(WebSocketSession session: sessions){
+        session.sendMessage(new TextMessage(gson.toJson(message)));
+      }
+    } catch (Exception e){
       System.out.println(e);
     }
   }
