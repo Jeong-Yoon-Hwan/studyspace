@@ -19,6 +19,14 @@ const MessageForm = () => {
       msg: message,
     };
     ws.sendMessage(sendData);
+
+    setMessage("");
+  };
+
+  const activeEnter = (e: any) => {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
   };
 
   return (
@@ -27,6 +35,8 @@ const MessageForm = () => {
         type="text"
         className={styled.inputMessage}
         onChange={handleMessageChange}
+        value={message}
+        onKeyDown={activeEnter}
       />
       <div className={styled.sendBtn} onClick={sendMessage}>
         보내기

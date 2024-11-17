@@ -12,7 +12,7 @@ const Main = () => {
 
   useEffect(() => {
     if (user !== null) {
-      connectWebSocket("ws://localhost:8088/ws/chat");
+      connectWebSocket("ws://192.168.0.6:8088/ws/chat");
     }
 
     return () => {

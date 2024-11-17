@@ -1,13 +1,18 @@
 import styled from "./index.module.css";
 
-const MessageBox = ({ type, msg, index }: any) => {
+const MessageBox = ({ type, msg, user, index }: any) => {
   return (
     <div
       className={
         type === "send" ? styled.sendMessageBox : styled.receiveMessageBox
       }
     >
-      <div className={styled.messageBox}>{msg}</div>
+      {type !== "send" ? <div className={styled.user}>{user}</div> : null}
+      <div
+        className={type === "send" ? styled.sendMessage : styled.receiveMessage}
+      >
+        {msg}
+      </div>
     </div>
   );
 };

@@ -5,7 +5,9 @@ import useStore from "../../stores/users";
 import useWebSocketStore from "../../stores/websocket";
 
 const ChatArea = () => {
-  const [msgList, setMsgList] = useState<{ type: string; msg: string }[]>([]);
+  const [msgList, setMsgList] = useState<
+    { type: string; msg: string; user: string }[]
+  >([]);
 
   const userStore = useStore((state: any) => state.user);
 
@@ -17,9 +19,9 @@ const ChatArea = () => {
       const parseMessage = JSON.parse(ws.msg);
       const { user, msg } = parseMessage;
       if (user === userStore) {
-        setMsgList([...msgList, { type: "send", msg }]);
+        setMsgList([...msgList, { type: "send", msg, user }]);
       } else {
-        setMsgList([...msgList, { type: "receiver", msg }]);
+        setMsgList([...msgList, { type: "receiver", msg, user }]);
       }
     }
   }, [ws]);
@@ -29,7 +31,12 @@ const ChatArea = () => {
       <div className={styled.chatArea}>
         {/* <MessageBox text={"안녕하세요"} type="send" /> */}
         {msgList.map((content, index) => (
-          <MessageBox type={content.type} msg={content.msg} key={index} />
+          <MessageBox
+            type={content.type}
+            msg={content.msg}
+            user={content.user}
+            key={index}
+          />
         ))}
       </div>
     </>
